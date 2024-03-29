@@ -3,6 +3,7 @@ extends CharacterBody2D
 var health = 3
 
 @onready var player = get_node("/root/Game/Player")
+@onready var scoreboard = get_node("/root/Game/CanvasLayer2/UserInterface/ScoreLabel") 
 
 func _ready():
 	%Slime.play_walk()
@@ -18,6 +19,7 @@ func take_damage():
 	%Slime.play_hurt()
 	if health == 0:
 		queue_free()
+		scoreboard._on_mob_squashed()
 		const SMOKE_SCREEN = preload("res://smoke_explosion/smoke_explosion.tscn")
 		var smoke = SMOKE_SCREEN.instantiate()
 		get_parent().add_child(smoke)

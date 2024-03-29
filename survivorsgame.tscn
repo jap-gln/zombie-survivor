@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://7ur4p173nkiy"]
+[gd_scene load_steps=7 format=3 uid="uid://7ur4p173nkiy"]
 
 [ext_resource type="PackedScene" uid="uid://0u8ofjs4l4iv" path="res://player.tscn" id="1_bn016"]
 [ext_resource type="Script" path="res://survivorsgame.gd" id="1_tyyj4"]
 [ext_resource type="PackedScene" uid="uid://nj4l2j4nymlr" path="res://tree.tscn" id="2_roc02"]
 [ext_resource type="PackedScene" uid="uid://q4wyvjrfceb6" path="res://mob.tscn" id="3_be6m5"]
+[ext_resource type="Script" path="res://ScoreLabel.gd" id="5_lp7w3"]
 
 [sub_resource type="Curve2D" id="Curve2D_8vh42"]
 _data = {
@@ -100,6 +101,25 @@ theme_override_font_sizes/font_size = 200
 text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="UserInterface" type="Control" parent="CanvasLayer2"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer2/UserInterface"]
+layout_mode = 1
+offset_right = 256.0
+offset_bottom = 104.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
+text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_lp7w3")
 
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
